@@ -40,17 +40,17 @@ pipeline {
         }
 
         stage('Deploy to Tomcat') {
-    steps {
-        echo 'WAR file generated successfully. Deployment to Tomcat initiated.'
-    }
-}
+            steps {
+                echo 'WAR file generated successfully. Deployment to Tomcat initiated.'
+            }
+        }
     }
 
-   post {
-    success {
-        emailext(
-            subject: "SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """
+    post {
+        success {
+            emailext(
+                subject: "SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
 Hello,
 
 The Banking Application CI/CD Pipeline completed successfully.
@@ -65,14 +65,14 @@ ${env.BUILD_URL}
 Regards,
 Jenkins
 """,
-            to: "akshaybetkar06@gmail.com"
-        )
-    }
+                to: "akshaybetkar06@gmail.com"
+            )
+        }
 
-    failure {
-        emailext(
-            subject: "FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """
+        failure {
+            emailext(
+                subject: "FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
 The Banking Application CI/CD Pipeline failed.
 
 Project : ${env.JOB_NAME}
@@ -81,7 +81,8 @@ Build : ${env.BUILD_NUMBER}
 Check:
 ${env.BUILD_URL}
 """,
-            to: "akshaybetkar06@gmail.com"
-        )
+                to: "akshaybetkar06@gmail.com"
+            )
+        }
     }
 }
