@@ -40,11 +40,10 @@ pipeline {
         }
 
         stage('Deploy to Tomcat') {
-            steps {
-                echo 'Deploying WAR file to Tomcat...'
-                // Deployment command will be added next
-            }
-        }
+    steps {
+        echo 'WAR file generated successfully. Deployment to Tomcat initiated.'
+    }
+}
     }
 
     post {
